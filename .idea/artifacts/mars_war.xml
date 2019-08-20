@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mars:war">
+    <output-path>$PROJECT_DIR$/mars/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>mars</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="mars.war">
+      <element id="artifact" artifact-name="mars:war exploded" />
+    </root>
+  </artifact>
+</component>
