@@ -29,13 +29,17 @@ public class ScanningServiceImpl implements ScanningService {
                 if (verifyPosition(finalPosition)) {
                     finalPosition.setMessage("200 OK");
                 } else {
-                    finalPosition.setMessage("400 Bad Request - Outside the zone");
+                    //finalPosition.setMessage("400 Bad Request - Outside the zone");
+                    finalPosition = null;
+                    logger.debug("Method : executeInstruction :::" + "400 Bad Request - Outside the zone");
                 }
             } else {
-                finalPosition.setMessage("400 Bad Request - Invalid Command");
+                //finalPosition.setMessage("400 Bad Request - Invalid Command");
+                finalPosition = null;
+                logger.debug("Method : executeInstruction :::" + "400 Bad Request - Invalid Command");
             }
         } catch (Exception ex) {
-            logger.error("Method : executeInstruction :::" + ex.getMessage());
+            logger.error("Method : executeInstruction :::" + "ex.getMessage()");
         }
         return finalPosition;
     }
@@ -75,8 +79,8 @@ public class ScanningServiceImpl implements ScanningService {
                 }
             }
             position.setFocus(focus);
-            position.setxLocation(String.valueOf(xAxis));
-            position.setyLocation(String.valueOf(yAxis));
+            position.setXLocation(String.valueOf(xAxis));
+            position.setYLocation(String.valueOf(yAxis));
         } catch (Exception ex) {
             logger.error("Method : move :::" + ex.getMessage());
         }
@@ -86,9 +90,9 @@ public class ScanningServiceImpl implements ScanningService {
     private boolean verifyPosition(Position position) {
         boolean rightLocation = true;
         try {
-            int xAxis = Integer.parseInt(position.getxLocation());
-            int yAxis = Integer.parseInt(position.getyLocation());
-            if ((xAxis > Constants.LIMIT_NORTH || xAxis < Constants.LIMIT_SOUTH) || (yAxis > Constants.LIMIT_EAST || yAxis < -Constants.LIMIT_WEST))
+            int xAxis = Integer.parseInt(position.getXLocation());
+            int yAxis = Integer.parseInt(position.getYLocation());
+            if ((xAxis > Constants.LIMIT_NORTH || xAxis < Constants.LIMIT_SOUTH) || (yAxis > Constants.LIMIT_EAST || yAxis < Constants.LIMIT_WEST))
                 rightLocation = false;
         } catch (Exception ex) {
             logger.error("Method : verifyPosition :::" + ex.getMessage());

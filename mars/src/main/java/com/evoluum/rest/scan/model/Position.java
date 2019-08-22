@@ -1,6 +1,5 @@
 package com.evoluum.rest.scan.model;
 
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,24 +18,26 @@ public class Position {
     public Position() {
     }
 
-    public String getxLocation() {
+    public Position(String xLocation, String yLocation, String focus) {
+        this.xLocation = xLocation;
+        this.yLocation = yLocation;
+        this.focus = focus;
+    }
+
+    public String getXLocation() {
         return xLocation;
     }
 
-    public void setxLocation(String xLocation) {
+    public void setXLocation(String xLocation) {
         this.xLocation = xLocation;
     }
 
-    public String getyLocation() {
+    public String getYLocation() {
         return yLocation;
     }
 
-    public void setyLocation(String yLocation) {
+    public void setYLocation(String yLocation) {
         this.yLocation = yLocation;
-    }
-
-    public String getFocus() {
-        return focus;
     }
 
     public void setFocus(String focus) {

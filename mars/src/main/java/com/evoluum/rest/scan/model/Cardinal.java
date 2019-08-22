@@ -16,28 +16,14 @@ public class Cardinal {
         return initial;
     }
 
-
-    public void setInitial(String initial) {
-        this.initial = initial;
-    }
-
     public String getLeftRotate() {
         return leftRotate;
     }
-
-    public void setLeftRotate(String leftRotate) {
-        this.leftRotate = leftRotate;
-    }
-
     public String getRightRotate() {
         return rightRotate;
     }
 
-    public void setRightRotate(String rightRotate) {
-        this.rightRotate = rightRotate;
-    }
-
-    @Override
+   @Override
     public String toString() {
         return "Cardinal{" +
                 "initial='" + initial + '\'' +

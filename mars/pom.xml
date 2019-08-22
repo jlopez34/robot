@@ -7,7 +7,7 @@
     <groupId>com.evoluum.rest</groupId>
     <artifactId>mars</artifactId>
     <version>1.0.0</version>
-    <name>postings</name>
+    <name>mars</name>
     <description>Scanning robots project</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -73,6 +73,11 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

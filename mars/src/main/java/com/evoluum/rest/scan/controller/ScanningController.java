@@ -1,6 +1,5 @@
 package com.evoluum.rest.scan.controller;
 
-
 import com.evoluum.rest.scan.model.Position;
 import com.evoluum.rest.scan.service.ScanningService;
 import io.swagger.annotations.Api;
@@ -33,19 +32,26 @@ public class ScanningController {
         this.service = service;
     }
 
-    @PostMapping("/")
+    @PostMapping("/{instruction}")
     @ApiOperation(value = "Execute Instructions", notes = "Return final position of the scanning robots")
-    public @ResponseBody ResponseEntity<String> executeInstruction(@RequestBody String instruction) {
+    public @ResponseBody
+    ResponseEntity<String> executeInstruction(@PathVariable String instruction) {
         logger.info("Consuming executeInstruction");
         HttpStatus status;
-        Position position = service.executeInstruction(instruction);
-        if (position != null)
-            status = HttpStatus.OK;
-        else
-            status = HttpStatus.CREATED;
+        Position position = null;
 
-        System.out.println("Final Position Robot:  " + (position != null ? position.toString() : "Error"));
-        return new ResponseEntity<>("POST Response " + status.toString(), status);
+        try {
+            position = service.executeInstruction(instruction);
+            if ((position != null) && (position.getMessage().contains("200"))) {
+                status = HttpStatus.OK;
+            } else
+                status = HttpStatus.BAD_REQUEST;
+        } catch (Exception ex) {
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<>(position != null ? position.toString() : status.toString(), status);
+
     }
 
 }
